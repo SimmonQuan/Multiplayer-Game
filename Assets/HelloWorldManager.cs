@@ -45,6 +45,8 @@ public class HelloWorldManager : MonoBehaviour
 
     void OnHostButtonClicked()
     {
+        var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+        transport.SetConnectionData("0.0.0.0", 7777);
         NetworkManager.Singleton.StartHost();
     }
 

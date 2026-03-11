@@ -16,6 +16,10 @@ public class TimerUI : MonoBehaviour
         {
             return;
         }
+        if (!GameManager.Instance.IsSpawned)
+        {
+            return;
+        }
         int seconds = Mathf.CeilToInt(GameManager.Instance.timeRemaining.Value); //reads time remaining and stores it as an integer
         uiText.text = "Time: " + seconds; //changes text on screen to allow player to see time remaining in the game
     }

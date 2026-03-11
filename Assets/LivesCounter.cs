@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using Unity.Netcode;
 
-public class LivesDisplay : MonoBehaviour
+public class LivesCounter : MonoBehaviour
 {
     private TextMeshProUGUI uiText;
     private ApplePicker applePicker;
@@ -22,6 +22,7 @@ public class LivesDisplay : MonoBehaviour
             {
                 applePicker = basketGO.GetComponent<ApplePicker>();
                 applePicker.lives.OnValueChanged += OnLivesChanged; //establishes when lives changes, OnlivesChanged is called
+                uiText.text = "Lives: " + applePicker.lives.Value;
             }
         }
     }

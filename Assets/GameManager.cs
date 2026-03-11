@@ -28,7 +28,7 @@ public class GameManager : NetworkBehaviour
 
         if (IsHost)
         {
-            var tree = Instantiate(treePrefab, new Vector3(0, 14f, 0), Quaternion.identity); //spawn tree prefab
+            var tree = Instantiate(treePrefab, new Vector3(0, 12f, 0), Quaternion.identity); //spawn tree prefab
             tree.GetComponent<NetworkObject>().SpawnAsPlayerObject(NetworkManager.Singleton.LocalClientId); //ensures tree is spawned across all devices and only owner has access
         }
     }
@@ -44,7 +44,7 @@ public class GameManager : NetworkBehaviour
 
     IEnumerator SpawnBasketDelayed(ulong clientId)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.5f);
         var basket = Instantiate(basketPrefab, new Vector3(0, -14f, 0), Quaternion.identity);
         basket.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
         gameStarted = true;
@@ -76,7 +76,7 @@ public class GameManager : NetworkBehaviour
             return;
         }
 
-        if (scoreCounter.score.Value >= 500) //if score is 500 or above, player 2 won
+        if (scoreCounter.score.Value >= 1000) //if score is 1000 or above, player 2 won
         {
             gameOver.Value = true;
             ShowPlayer2WinsClientRpc();
