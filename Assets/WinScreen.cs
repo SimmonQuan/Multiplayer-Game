@@ -18,14 +18,14 @@ public class WinScreen : MonoBehaviour
     public void ShowPlayer1Wins()
     {
         player1WinPanel.SetActive(true);
-        //show player 1 won, freeze game
-        Time.timeScale = 0f;
+        //show player 1 won
+        Time.timeScale = 0f; //freeze game
     }
 
     public void ShowPlayer2Wins()
     {
         player2WinPanel.SetActive(true);
-        //show player 2 won, freeze game
-        Time.timeScale = 0f; //freeze
+        //show player 2 won
+        Time.timeScale = 0f; //freeze game
     }
 }

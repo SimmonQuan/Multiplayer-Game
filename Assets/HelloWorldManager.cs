@@ -4,7 +4,7 @@ using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class HelloWorldManager : MonoBehaviour
+public class HelloWorldManager : MonoBehaviour //buttons UI code from provided unity tutorial
 {
     VisualElement rootVisualElement;
     Button hostButton;

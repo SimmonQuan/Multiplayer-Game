@@ -12,7 +12,7 @@ public class TimerUI : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance == null)
+        if (GameManager.Instance == null) //ensures gamemanager exists
         {
             return;
         }

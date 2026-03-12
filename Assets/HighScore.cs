@@ -6,7 +6,7 @@ using TMPro;
 public class HighScore : MonoBehaviour
 {
     static private TextMeshProUGUI _UI_TEXT;
-    static private int _SCORE = 1000;
+    static private int _SCORE = 1000; //default starting highscore is 1000
     private TextMeshProUGUI txtCom;
 
     void Awake()
@@ -35,7 +35,7 @@ public class HighScore : MonoBehaviour
 
     static public void TRY_SET_HIGH_SCORE(int scoreToTry)
     {
-        if (scoreToTry <= SCORE) return;
+        if (scoreToTry <= SCORE) return; //attempts to update the high score, only succeeds if current score > previously recorded high score
         
             SCORE = scoreToTry;
         
