@@ -5,13 +5,13 @@ using System.Collections;
 public class WinScreen : MonoBehaviour
 {
     public static WinScreen Instance;
-    public GameObject player1WinPanel;
-    public GameObject player2WinPanel;
+    public GameObject player1WinPanel; //player 1 wins UI
+    public GameObject player2WinPanel; //player 2 wins UI
 
     void Awake()
     {
         Instance = this;
-        player1WinPanel.SetActive(false); //at the start of the game, hide both winners screens
+        player1WinPanel.SetActive(false); //hide both winners screens (will be selectively activated later when game winner is determined)
         player2WinPanel.SetActive(false);
     }
 
@@ -20,7 +20,6 @@ public class WinScreen : MonoBehaviour
         player1WinPanel.SetActive(true);
         //show player 1 won, freeze game
         Time.timeScale = 0f;
-        StartCoroutine(RestartAfterDelay(4f));
     }
 
     public void ShowPlayer2Wins()
@@ -28,13 +27,5 @@ public class WinScreen : MonoBehaviour
         player2WinPanel.SetActive(true);
         //show player 2 won, freeze game
         Time.timeScale = 0f; //freeze
-        StartCoroutine(RestartAfterDelay(4f));
-    }
-
-    IEnumerator RestartAfterDelay(float delay)
-    {
-        yield return new WaitForSecondsRealtime(delay); //after delay, restart the scene to play again
-        Time.timeScale = 1f; //resume
-        SceneManager.LoadScene("SampleScene");
     }
 }

@@ -10,7 +10,7 @@ public class LivesCounter : MonoBehaviour
     void Start()
     {
         uiText = GetComponent<TextMeshProUGUI>();
-        uiText.text = "Lives: 3"; //player starts the game with 3 lives
+        uiText.text = "Lives: 3"; 
     }
 
     void Update()
@@ -21,7 +21,7 @@ public class LivesCounter : MonoBehaviour
             if (basketGO != null)
             {
                 applePicker = basketGO.GetComponent<ApplePicker>();
-                applePicker.lives.OnValueChanged += OnLivesChanged; //establishes when lives changes, OnlivesChanged is called
+                applePicker.lives.OnValueChanged += OnLivesChanged; //when lives changes, OnlivesChanged is called
                 uiText.text = "Lives: " + applePicker.lives.Value;
             }
         }
@@ -29,6 +29,6 @@ public class LivesCounter : MonoBehaviour
 
     void OnLivesChanged(int previous, int current)
     {
-        uiText.text = "Lives: " + current; //update the text to constantly show updated life count for player
+        uiText.text = "Lives: " + current; //update the text to display updated life count for player
     }
 }

@@ -5,7 +5,6 @@ using Unity.Netcode;
 
 public class AppleTree : NetworkBehaviour
 {
-    [Header("Inscribed")]
     public GameObject applePrefab;
     public GameObject bombPrefab;
     public float speed = 17f;
@@ -17,7 +16,7 @@ public class AppleTree : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner)
+        if (!IsOwner) //only owner has permission to control the tree
         {
             enabled = false;
             return;
@@ -33,11 +32,11 @@ public class AppleTree : NetworkBehaviour
         }
 
         float move = 0f;
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow)) //left arrow key moves the tree to the left
         {
             move = -1f;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow)) //right arrow key moves the tree to the right
         {
             move = 1f;
         }
@@ -60,14 +59,14 @@ public class AppleTree : NetworkBehaviour
         }
     }
 
-    [Rpc(SendTo.Server)] //tells server to spawn the bomb across all devices
+    [Rpc(SendTo.Server)] //tells server to spawn the bomb which will be reflected across all devices
     void DropBombServerRpc(Vector3 spawnPosition)
     {
         GameObject bomb = Instantiate(bombPrefab, spawnPosition, Quaternion.identity);
         bomb.GetComponent<NetworkObject>().Spawn();
     }
 
-    [Rpc(SendTo.Server)] //tells server to spawn apple across all devices
+    [Rpc(SendTo.Server)] //tells server to spawn apple which will be reflected across all devices
     void SpawnAppleServerRpc(Vector3 spawnPosition)
     {
         GameObject apple = Instantiate(applePrefab, spawnPosition, Quaternion.identity);

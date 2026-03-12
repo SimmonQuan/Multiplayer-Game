@@ -12,15 +12,16 @@ public class TimerUI : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance == null) //ensures gamemanager has started
+        if (GameManager.Instance == null)
         {
             return;
         }
-        if (!GameManager.Instance.IsSpawned)
+        if (!GameManager.Instance.IsSpawned) //ensures gamemanager started
         {
             return;
         }
+    
         int seconds = Mathf.CeilToInt(GameManager.Instance.timeRemaining.Value); //reads time remaining and stores it as an integer
-        uiText.text = "Time: " + seconds; //changes text on screen to allow player to see time remaining in the game
+        uiText.text = "Time: " + seconds; //update UI that displays time remaining in match
     }
 }

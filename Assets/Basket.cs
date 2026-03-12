@@ -10,7 +10,7 @@ public class Basket : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner) //only player 2 can control the basket
+        if (!IsOwner)
         {
             enabled = false;
             return;
@@ -21,12 +21,12 @@ public class Basket : NetworkBehaviour
 
     void Update()
     {
-        if (!IsOwner) //only player 2 can control the basket
+        if (!IsOwner)
         {
             return;
         }
 
-        float move = 0f;
+        float move = 0f;             //only player 2 can control the basket
         if (Input.GetKey(KeyCode.A)) //A = left, D = right movement
         {
             move = -1f;
@@ -58,12 +58,12 @@ public class Basket : NetworkBehaviour
         }
     }
 
-    [Rpc(SendTo.Server)]
+    [Rpc(SendTo.Server)] //only occurs on the server
     void CollectAppleServerRpc(ulong appleNetworkId)
     {
         if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(appleNetworkId, out NetworkObject apple))
         {
-            apple.Despawn(); //despawn that specific apple across all devices
+            apple.Despawn(); //despawn that specific apple on the server, this will be reflected across all devices
             GameManager.Instance.AddScore(100); //add 100 to score which is shared across all devices
         }
     }
@@ -73,8 +73,8 @@ public class Basket : NetworkBehaviour
     {
         if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(bombNetworkId, out NetworkObject bomb))
         {
-            bomb.Despawn(); //despawn that specific bomb across all devices
-            GetComponent<ApplePicker>().lives.Value--; //decreaselife counter across all devices
+            bomb.Despawn(); //despawn that specific bomb on the server, this will be reflected across all devices
+            GetComponent<ApplePicker>().lives.Value--; //decrease life counter across all devices
         }
     }
 }

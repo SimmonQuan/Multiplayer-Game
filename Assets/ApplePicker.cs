@@ -6,8 +6,7 @@ using Unity.Netcode;
 
 public class ApplePicker : NetworkBehaviour
 {
-    [Header("Inscribed")]
-    public int numLives = 3;
+    public int numLives = 3; //default life count, can be edited to extend game/add difficulty
 
     public NetworkVariable<int> lives = new NetworkVariable<int>(3, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     //lives count is viewable by all but only server can update the life count
@@ -25,7 +24,7 @@ public class ApplePicker : NetworkBehaviour
     {
         if (current <= 0 && IsServer)
         {
-            GameManager.Instance.OnBasketOutOfLives(); //tell game manager basket life count has reached 0 therefore gameover
+            GameManager.Instance.OnBasketOutOfLives(); //tells game manager basket life count has reached 0 therefore gameover
         }
     }
 }

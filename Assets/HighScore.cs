@@ -12,12 +12,10 @@ public class HighScore : MonoBehaviour
     void Awake()
     {
         _UI_TEXT = this.GetComponent<TextMeshProUGUI>();
-        //if the playerpref highscore already exists, read it
         if (PlayerPrefs.HasKey("HighScore"))
         {
             SCORE = PlayerPrefs.GetInt("HighScore");
         }
-       //assign the high score to highscore
        PlayerPrefs.SetInt("HighScore", SCORE);
        
     }
@@ -42,7 +40,7 @@ public class HighScore : MonoBehaviour
             SCORE = scoreToTry;
         
     }
-    [Tooltip("Check this box to reset the HighScore in PlayerPrefs")]
+    [Tooltip("Reset High Score")]
     public bool resetHighScoreNow = false;
 
     void OnDrawGizmos()
@@ -51,13 +49,6 @@ public class HighScore : MonoBehaviour
         {
             resetHighScoreNow = false;
             PlayerPrefs.SetInt("HighScore", 1000);
-            Debug.LogWarning("PlayerPrefs HighScore reset to 1,000");
         }
-    }
-
-    void OnScoreChanged(int previous, int current)
-    {
-        _UI_TEXT.text += current.ToString("#,0");
-        HighScore.TRY_SET_HIGH_SCORE(current);
     }
 }

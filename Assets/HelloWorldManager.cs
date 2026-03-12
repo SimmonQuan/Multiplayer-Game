@@ -54,7 +54,7 @@ public class HelloWorldManager : MonoBehaviour
     {
         string ipAddress = ipInputField.value;
 
-        if (string.IsNullOrEmpty(ipAddress) || ipAddress == "Enter Host IP...")
+        if (string.IsNullOrEmpty(ipAddress) || ipAddress == "Input Host IP")
         {
             ipAddress = "127.0.0.1";
         }
